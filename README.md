@@ -77,17 +77,20 @@ These are accessible in the `memory_store` under the keys `lex_atlantis`, `ficti
 
 ### CLI Tool
 
-Use `cli_tool.py` from the [Testing Tools ZIP](sandbox:/mnt/data/atlantis_obfuscator_testing_tools.zip):
+Use `cli_tool.py` from the `test-tools` directory:
 
 ```bash
 # Toggle obfuscation on
-python cli_tool.py --toggle on
+python test-tools/cli_tool.py --toggle on
 
 # Inject narrative memory
-python cli_tool.py --inject memory.json
+python test-tools/cli_tool.py --inject memory.json
 
 # Query obfuscation
-python cli_tool.py --query "Where was Damien last year?"
+python test-tools/cli_tool.py --query "Where was Damien last year?"
+
+# Show current memory snapshot
+python test-tools/cli_tool.py --snapshot
 ```
 
 ### Postman
@@ -121,6 +124,24 @@ For future GPT Plugin use, `.well-known/ai-plugin.json` is provided.
 ## 🔧 Maintainer Notes
 
 This system is built for **internal use only** as part of the Atlantis AI lineage framework. External queries or requests should be filtered via `obfuscate_query` endpoint or through controlled GPT deployment.
+
+---
+
+## 🐳 Docker Usage
+
+### Build and Run
+
+```bash
+# Build the Docker image
+docker build -t atlantis-obfuscator .
+
+# Run the container on port 10000
+# Ensure .env is present if needed
+# Mount current directory for live code updates (optional)
+docker run -p 10000:10000 --env-file .env atlantis-obfuscator
+```
+
+Visit [http://localhost:10000/docs](http://localhost:10000/docs) for Swagger UI.
 
 ---
 
