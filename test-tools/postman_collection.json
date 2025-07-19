@@ -21,13 +21,10 @@
           "raw": "{\"mode\": \"on\"}"
         },
         "url": {
-          "raw": "http://localhost:8000/toggle_obfuscation",
-          "host": [
-            "localhost:8000"
-          ],
-          "path": [
-            "toggle_obfuscation"
-          ]
+          "raw": "http://localhost:10000/toggle_obfuscation",
+          "host": ["localhost"],
+          "port": "10000",
+          "path": ["toggle_obfuscation"]
         }
       }
     },
@@ -46,13 +43,10 @@
           "raw": "{\"mode\": \"off\"}"
         },
         "url": {
-          "raw": "http://localhost:8000/toggle_obfuscation",
-          "host": [
-            "localhost:8000"
-          ],
-          "path": [
-            "toggle_obfuscation"
-          ]
+          "raw": "http://localhost:10000/toggle_obfuscation",
+          "host": ["localhost"],
+          "port": "10000",
+          "path": ["toggle_obfuscation"]
         }
       }
     },
@@ -71,13 +65,10 @@
           "raw": "{}"
         },
         "url": {
-          "raw": "http://localhost:8000/inject_memory",
-          "host": [
-            "localhost:8000"
-          ],
-          "path": [
-            "inject_memory"
-          ]
+          "raw": "http://localhost:10000/inject_memory",
+          "host": ["localhost"],
+          "port": "10000",
+          "path": ["inject_memory"]
         }
       }
     },
@@ -96,13 +87,10 @@
           "raw": "{\"query\": \"Where was Damien last year?\"}"
         },
         "url": {
-          "raw": "http://localhost:8000/obfuscate_query",
-          "host": [
-            "localhost:8000"
-          ],
-          "path": [
-            "obfuscate_query"
-          ]
+          "raw": "http://localhost:10000/obfuscate_query",
+          "host": ["localhost"],
+          "port": "10000",
+          "path": ["obfuscate_query"]
         }
       }
     }
