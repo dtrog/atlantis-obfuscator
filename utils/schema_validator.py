@@ -1,4 +1,3 @@
-
 from pydantic import BaseModel, ValidationError
 from typing import List, Dict, Optional
 
@@ -24,7 +23,6 @@ class MemorySchema(BaseModel):
 
 def validate_memory(payload: dict):
     try:
-        validated = MemorySchema(**payload)
-        return validated.dict()
+        return MemorySchema(**payload).dict()
     except ValidationError as e:
         return {"error": e.errors()}

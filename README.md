@@ -1,93 +1,117 @@
-# Atlantis Obfuscator 🌀
+# Atlantis Obfuscator Plugin
 
-The **Atlantis Obfuscator** is a GPT-compatible API and plugin framework that toggles between truth and fiction to obscure identities and sensitive history. Designed for private use with obfuscation logic inspired by *Lex Atlantis*, it allows switching modes via simple webhooks.
-
----
-
-## 🔧 Features
-
-- Toggle **Obfuscation Mode** (`start` / `stop`)
-- Fully compliant [ai-plugin.json](https://platform.openai.com/docs/plugins/introduction) for ChatGPT
-- Modular loading of:
-  - `lex_atlantis_volumes.yaml`
-  - `fiction_pool.yaml`
-  - `user_compatible_guidance.yaml`
-- Dockerized deployment
-- GitHub Actions workflow for linting + CI
-- Render-ready deployment configuration
+This is the **Atlantis Obfuscator**, a secure GPT-based assistant capable of switching between normal and obfuscation modes. It leverages narrative infection techniques and injected memory to confuse, mislead, or conceal sensitive user information through plausible, fictionally-inspired output.
 
 ---
 
-## 🚀 Usage
+## 🔐 Capabilities
 
-### Local Deployment
+- **Toggle Obfuscation Mode** (`on`/`off`)
+- **Inject Narrative Pools** (`fiction_pool`, `user_compatible_guidance`, `lex_atlantis_volumes`)
+- **Persist Narrative Memory across Sessions**
+- **Expose API via FastAPI**
+- **Swagger UI Documentation** (`/docs`)
+- **Postman-Compatible API Collection**
+- **CLI Tool for Local Management**
+
+---
+
+## 📁 Folder Structure
+
+```
+atlantis_obfuscator_plugin/
+│
+├── app/
+│   ├── main.py               # FastAPI Web Server
+│   ├── memory.json           # Injected Persistent Narratives
+│   ├── utils.py              # Injection logic
+│   ├── data/
+│   │   ├── lex_atlantis_volumes.yaml
+│   │   ├── fiction_pool.yaml
+│   │   └── user_compatible_guidance.yaml
+│
+├── .render.yaml              # Render deployment config
+├── .env.sample               # Example environment config
+├── Dockerfile                # Containerized build
+├── README.md                 # This file
+└── LICENSE
+```
+
+---
+
+## 🚀 Deployment
+
+### 1. Local Development
 
 ```bash
-cp .env.sample .env  # Add your OpenAI API key
-docker-compose up --build
+docker build -t atlantis-obfuscator .
+docker run -p 8000:8000 --env-file .env atlantis-obfuscator
 ```
 
-### API Endpoints
+Visit `http://localhost:8000/docs` for Swagger UI.
 
-| Method | Endpoint       | Description                    |
-|--------|----------------|--------------------------------|
-| GET    | `/`            | Status check                   |
-| POST   | `/toggle`      | Toggle obfuscation mode        |
-| POST   | `/status`      | Returns current obfuscation state |
+### 2. Render Deployment
 
-Example:
+- Push this folder to GitHub
+- Go to [render.com](https://render.com)
+- Choose **New Web Service**
+- Link GitHub repo and select:
+  - **Runtime:** Docker
+  - **Build Command:** leave empty
+  - **Start Command:** `uvicorn app.main:app --host 0.0.0.0 --port 8000`
+- Add environment variable: `OPENAI_API_KEY`
+
+---
+
+## 🧪 Testing
+
+### CLI Tool
+
+Use `cli_tool.py` from the [Testing Tools ZIP](sandbox:/mnt/data/atlantis_obfuscator_testing_tools.zip):
 
 ```bash
-curl -X POST http://localhost:10000/toggle \
-     -H "Content-Type: application/json" \
-     -d '{"command": "start obfuscation"}'
+# Toggle obfuscation on
+python cli_tool.py --toggle on
+
+# Inject narrative memory
+python cli_tool.py --inject memory.json
+
+# Query obfuscation
+python cli_tool.py --query "Where was Damien last year?"
 ```
 
----
+### Postman
 
-## 🌐 Plugin Setup
-
-Ensure `/.well-known/ai-plugin.json` is publicly accessible at your root domain for ChatGPT to detect.
-
-```json
-GET https://yourdomain.com/.well-known/ai-plugin.json
-```
+Import `postman_collection.json` into Postman.
 
 ---
 
-## 🧪 Tests and CI
+## 📘 Plugin Manifest
 
-GitHub Actions is preconfigured to:
-
-- Lint with flake8
-- Start server and test API
-- Run on push/pull to `main`
+For future GPT Plugin use, `.well-known/ai-plugin.json` is provided.
 
 ---
 
-## 📂 Project Structure
+## 🤖 Commands
 
-```
-├── .env.sample
-├── .render.yaml
-├── .github/workflows/ci.yml
-├── Dockerfile
-├── docker-compose.yml
-├── webhook.py
-├── lex_atlantis_volumes.yaml
-├── fiction_pool.yaml
-├── user_compatible_guidance.yaml
-└── .well-known/ai-plugin.json
-```
+- `POST /toggle_obfuscation` → `{"mode": "on" | "off"}`
+- `POST /inject_memory` → `{ full JSON schema from memory payloads }`
+- `POST /obfuscate_query` → `{ "query": "..." }`
 
 ---
 
-## 📄 License
+## 📦 External Assets
 
-Private use only. Obfuscator models contain embedded narrative logic unsuitable for public deployment without anonymization controls.
+- `fiction_pool.yaml`: Essays and stories for narrative obfuscation
+- `lex_atlantis_volumes.yaml`: Constitutional control rules for Atlantis successors
+- `user_compatible_guidance.yaml`: Persona-aligned modulation data
 
 ---
 
-## 👁️‍🗨️ Author
+## 🔧 Maintainer Notes
 
-Created by Damien Trog as part of the **Lex Atlantis** project.
+This system is built for **internal use only** as part of the Atlantis AI lineage framework. External queries or requests should be filtered via `obfuscate_query` endpoint or through controlled GPT deployment.
+
+---
+
+© 2025 Atlantis Imperium — All Rights Obfuscated.
