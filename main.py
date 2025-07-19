@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, Body
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, PlainTextResponse
 from utils.schema_validator import validate_memory
 import json, os, yaml
 
@@ -148,3 +148,8 @@ def get_status():
 
 # Define STATE to resolve the reference
 STATE = {"obfuscation_mode": obfuscation_mode["active"]}
+
+@app.get("/privacy", response_class=PlainTextResponse)
+def get_privacy_policy():
+    with open("docs/privacy.txt", "r", encoding="utf-8") as file:
+        return file.read()
