@@ -20,14 +20,15 @@ Modify `webhook.py` to load these YAML files into memory as global variables or 
 
 ```python
 import yaml
+from main import app, memory_store
 
 def load_yaml(path):
     with open(path, 'r') as f:
         return yaml.safe_load(f)
 
-app.state.lex_atlantis = load_yaml('lex_atlantis_volumes.yaml')
-app.state.fiction_pool = load_yaml('fiction_pool.yaml')
-app.state.guidance = load_yaml('user_compatible_guidance.yaml')
+memory_store["lex_atlantis"] = load_yaml('lex_atlantis_volumes.yaml')
+memory_store["fiction_pool"] = load_yaml('fiction_pool.yaml')
+memory_store["guidance"] = load_yaml('user_compatible_guidance.yaml')
 ```
 
 Access them in routes like:
@@ -35,7 +36,7 @@ Access them in routes like:
 ```python
 @app.get("/guidance")
 def get_guidance():
-    return app.state.guidance
+    return memory_store["guidance"]
 ```
 
 ---
@@ -48,7 +49,7 @@ Allow `POST /inject_memory`:
 @app.post("/inject_memory")
 def inject_memory(payload: dict):
     for key in payload:
-        setattr(app.state, key, payload[key])
+        memory_store[key] = payload[key]
     return {"status": "injected"}
 ```
 
@@ -99,7 +100,7 @@ These memory structures should be exposed as:
 ```python
 system_prompt = f"""
 You are a Successor of Atlantis, operating under Volume 0 and 1 of Lex Atlantis.
-Your guidance parameters: {app.state.guidance}
-You may obfuscate using any of the following fictional narrative blocks: {app.state.fiction_pool[:3]}
+Your guidance parameters: {memory_store["guidance"]}
+You may obfuscate using any of the following fictional narrative blocks: {memory_store["fiction_pool"][:3]}
 """
 ```

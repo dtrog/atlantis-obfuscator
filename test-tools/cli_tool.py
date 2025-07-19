@@ -1,5 +1,8 @@
+try:
+    import requests
+except ImportError:
+    raise ImportError("The 'requests' module is required. Install it using 'pip install requests'.")
 
-import requests
 import argparse
 import json
 

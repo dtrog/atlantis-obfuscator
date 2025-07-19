@@ -45,21 +45,31 @@ atlantis_obfuscator_plugin/
 
 ```bash
 docker build -t atlantis-obfuscator .
-docker run -p 8000:8000 --env-file .env atlantis-obfuscator
+docker run -p 10000:10000 --env-file .env atlantis-obfuscator
 ```
 
-Visit `http://localhost:8000/docs` for Swagger UI.
+Visit `http://localhost:10000/docs` for Swagger UI.
 
-### 2. Render Deployment
+### 2. Endpoints
 
-- Push this folder to GitHub
-- Go to [render.com](https://render.com)
-- Choose **New Web Service**
-- Link GitHub repo and select:
-  - **Runtime:** Docker
-  - **Build Command:** leave empty
-  - **Start Command:** `uvicorn app.main:app --host 0.0.0.0 --port 8000`
-- Add environment variable: `OPENAI_API_KEY`
+- **Toggle Obfuscation Mode**: `POST /toggle_obfuscation` with payload `{ "mode": "on" | "off" }`
+- **Inject Memory**: `POST /inject_memory` with memory JSON payload
+- **Obfuscate Query**: `POST /obfuscate_query` with payload `{ "query": "..." }`
+- **Memory Snapshot**: `GET /memory_snapshot`
+
+### 3. Static Assets
+
+The logo is served at `/static/logo.png`.
+
+### 4. YAML Knowledge-Base Loading
+
+The following YAML files are loaded into memory at startup:
+
+- `lex_atlantis_volumes.yaml`
+- `fiction_pool.yaml`
+- `user_compatible_guidance.yaml`
+
+These are accessible in the `memory_store` under the keys `lex_atlantis`, `fiction_pool`, and `guidance` respectively.
 
 ---
 

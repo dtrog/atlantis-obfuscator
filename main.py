@@ -1,9 +1,8 @@
 from fastapi import FastAPI, Request, Body
 from fastapi.responses import JSONResponse
 from utils.schema_validator import validate_memory
-import json, os
+import json, os, yaml
 
-from webhook import STATE
 
 app = FastAPI(
     title="Atlantis Obfuscator",
@@ -12,12 +11,39 @@ app = FastAPI(
     docs_url="/docs", redoc_url="/redoc"
 )
 
+# Fix unresolved attributes by explicitly defining them
+
+# Define OpenAPI URL explicitly
+app.openapi_url = "/openapi.json"
+
+# Define Swagger UI OAuth2 redirect URL explicitly
+app.swagger_ui_oauth2_redirect_url = "/docs/oauth2-redirect"
+
 MEMORY_FILE = "memory.json"
 memory_store = {}
 obfuscation_mode = {"active": False}
 
 if os.path.exists(MEMORY_FILE):
     memory_store.update(json.load(open(MEMORY_FILE, "r", encoding="utf-8")))
+
+# Serve static files (e.g., logo.png)
+from fastapi.staticfiles import StaticFiles
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# Load YAML knowledge-base files
+
+def load_yaml(path):
+    with open(path, 'r', encoding='utf-8') as f:
+        return yaml.safe_load(f)
+
+lex = load_yaml("lex_atlantis_volumes.yaml")
+fiction = load_yaml("fiction_pool.yaml")
+guidance = load_yaml("user_compatible_guidance.yaml")
+
+# Optionally insert into memory_store at startup
+memory_store["lex_atlantis"] = lex
+memory_store["fiction_pool"] = fiction
+memory_store["guidance"] = guidance
 
 @app.get("/", summary="Health Check")
 def read_root():
@@ -53,15 +79,15 @@ def plugin_manifest():
 @app.get("/docs", include_in_schema=False)
 def custom_swagger_ui():
     return get_swagger_ui_html(
-        openapi_url=app.openapi_url,
+        openapi_url="/openapi.json",
         title="Atlantis Obfuscator Docs",
         swagger_js_url="/static/swagger-ui-bundle.js",
         swagger_css_url="/static/swagger-ui.css",
         swagger_favicon_url="/static/logo.png",
-        oauth2_redirect_url=app.swagger_ui_oauth2_redirect_url
+        oauth2_redirect_url="/docs/oauth2-redirect"
     )
 
-@app.get(app.swagger_ui_oauth2_redirect_url, include_in_schema=False)
+@app.get("/docs/oauth2-redirect", include_in_schema=False)
 def swagger_redirect():
     return get_swagger_ui_oauth2_redirect_html()
 
@@ -69,7 +95,7 @@ def swagger_redirect():
 @app.get("/redoc", include_in_schema=False)
 def redoc():
     return get_redoc_html(
-        openapi_url=app.openapi_url,
+        openapi_url="/openapi.json",
         title="Atlantis Obfuscator ReDoc",
         redoc_js_url="/static/redoc.standalone.js",
         redoc_favicon_url="/static/logo.png"
@@ -113,3 +139,6 @@ async def obfuscate_query(payload: dict = Body(...)):
 @app.post("/status")
 def get_status():
     return {"obfuscation_mode": STATE["obfuscation_mode"]}
+
+# Define STATE to resolve the reference
+STATE = {"obfuscation_mode": obfuscation_mode["active"]}

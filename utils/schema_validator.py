@@ -23,6 +23,6 @@ class MemorySchema(BaseModel):
 
 def validate_memory(payload: dict):
     try:
-        return MemorySchema(**payload).dict()
+        return MemorySchema(**payload).model_dump()
     except ValidationError as e:
         return {"error": e.errors()}
