@@ -17,5 +17,5 @@ This project deploys a modular GPT-compatible obfuscation assistant for internal
 1. **Fork or Push to GitHub**
 
    ```bash
-   git clone https://github.com/YOUR_USERNAME/atlantis-obfuscator.git
+   git clone https://github.com/dtrog/atlantis-obfuscator.git
    cd atlantis-obfuscator
