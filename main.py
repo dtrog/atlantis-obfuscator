@@ -47,7 +47,10 @@ memory_store["guidance"] = guidance
 
 @app.get("/", summary="Health Check")
 def read_root():
-    return {"message":"Atlantis Obfuscator active", "obfuscation_mode": obfuscation_mode["active"]}
+    return {
+        "message": "Atlantis Obfuscator active",
+        "obfuscation_mode": obfuscation_mode["active"]
+    }
 
 @app.get("/health", summary="Health Check for Render.com")
 def health_check():
