@@ -1,0 +1,36 @@
+name: Lint and Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install fastapi uvicorn pydantic
+
+    - name: Lint with flake8
+      run: |
+        pip install flake8
+        flake8 webhook.py --max-line-length=100
+
+    - name: Check API starts
+      run: |
+        uvicorn webhook:app --host 127.0.0.1 --port 10000 &
+        sleep 5
+        curl -X POST http://127.0.0.1:10000/toggle -H "Content-Type: application/json" -d '{"command":"start obfuscation"}'

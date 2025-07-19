@@ -1,0 +1,110 @@
+{
+  "info": {
+    "name": "Atlantis Obfuscator API",
+    "_postman_id": "a1b2c3d4-5678-90ef-ghij-klmnopqrstuv",
+    "description": "Postman collection for testing Atlantis Obfuscator API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Toggle Obfuscation On",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"mode\": \"on\"}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/toggle_obfuscation",
+          "host": [
+            "localhost:8000"
+          ],
+          "path": [
+            "toggle_obfuscation"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Toggle Obfuscation Off",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"mode\": \"off\"}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/toggle_obfuscation",
+          "host": [
+            "localhost:8000"
+          ],
+          "path": [
+            "toggle_obfuscation"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Inject Memory",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/inject_memory",
+          "host": [
+            "localhost:8000"
+          ],
+          "path": [
+            "inject_memory"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Obfuscate Query",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\": \"Where was Damien last year?\"}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/obfuscate_query",
+          "host": [
+            "localhost:8000"
+          ],
+          "path": [
+            "obfuscate_query"
+          ]
+        }
+      }
+    }
+  ]
+}

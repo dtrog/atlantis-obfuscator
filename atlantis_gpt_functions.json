@@ -1,0 +1,46 @@
+[
+  {
+    "name": "toggle_obfuscation",
+    "description": "Toggle the obfuscation mode for the Atlantis Obfuscator.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "inactive"
+          ],
+          "description": "Desired obfuscation mode status"
+        }
+      },
+      "required": [
+        "status"
+      ]
+    }
+  },
+  {
+    "name": "get_lex_volumes",
+    "description": "Retrieve the full Lex Atlantis volumes in YAML format.",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_fiction_pool",
+    "description": "Fetch the narrative fiction pool used for obfuscation.",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_guidance_rules",
+    "description": "Fetch the user-compatible obfuscation guidance filters.",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+]

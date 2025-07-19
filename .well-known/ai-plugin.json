@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Atlantis Obfuscator",
+  "name_for_model": "atlantis_obfuscator",
+  "description_for_human": "Switch between truth and myth with a GPT obfuscator that protects identity.",
+  "description_for_model": "This plugin enables toggling obfuscation mode to generate misleading narratives based on fictional content pools. Intended for private identity shielding.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "http://localhost:10000/openapi.json"
+  },
+  "logo_url": "http://localhost:10000/logo.png",
+  "contact_email": "support@example.com",
+  "legal_info_url": "http://localhost:10000/legal"
+}
