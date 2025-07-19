@@ -4,10 +4,10 @@
   "description": "A plugin for obfuscation and memory injection.",
   "api": {
     "type": "openapi",
-    "url": "http://localhost:10000/openapi.json"
+    "url": "https://atlantis-obfuscator.onrender.com/openapi.json"
   },
-  "logo_url": "http://localhost:10000/static/logo.png",
+  "logo_url": "https://atlantis-obfuscator.onrender.com/static/logo.png",
   "contact_email": "support@atlantis-imperium.com",
-  "legal_info_url": "http://localhost:10000/legal"
+  "legal_info_url": "https://atlantis-obfuscator.onrender.com/legal"
 }
 
