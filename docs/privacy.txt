@@ -1,48 +1,15 @@
-Privacy Policy
-Effective Date: July 19, 2025
-Plugin Name: Atlantis Obfuscator
-Contact: damien.trog@gmail.com
+# Privacy Policy for Atlantis Obfuscator
 
-1. Information We Collect
-Atlantis Obfuscator does not collect or store any personal data directly. However, the following information may be processed to fulfill plugin operations:
+Atlantis Obfuscator is an open-source web application hosted at [https://atlantis-obfuscator.onrender.com](https://atlantis-obfuscator.onrender.com). It is designed with user privacy in mind: **no personal data of users is collected or stored**. All input (code or text) you provide is used only transiently during the obfuscation process and is **not retained** after your session. The service uses **no cookies, analytics, or tracking mechanisms**. We also do **not share any information with third parties**. In short, Atlantis Obfuscator operates entirely with in-memory processing and does not engage in any form of user tracking or data collection.
 
-Input Data: Memory payloads and queries submitted to the plugin endpoints.
+Even though we collect no personal information, we provide this Privacy Policy as a best practice for transparency. The key privacy features are:
 
-Obfuscated Content: Temporarily processed in-memory to generate outputs.
+* **No Personal Data:** We do not collect, store, or process any personal or sensitive user information. The only data handled is the code/text you actively input for obfuscation.
+* **No Cookies or Tracking:** The application uses **no cookies, analytics tools, or tracking**. Your usage is anonymous and untracked.
+* **No Third-Party Sharing:** We do not share any user data with third parties. All processing is self-contained within the app.
+* **Ephemeral Processing:** Any data you submit exists only in-session for obfuscation and is **not retained** once you leave or refresh the page.
+* **No Retention Policies Needed:** Since we never store personal data, no data retention or deletion policies are necessary. No records are kept beyond your active session.
 
-Server Metadata: Such as timestamps, HTTP headers, and anonymized logs for debugging and abuse prevention.
+By using Atlantis Obfuscator at the link above, you acknowledge that you have read and understood this Privacy Policy. The **Data Controller** (the person responsible for this service and its data practices) is **Damien Trog**. Use of this service implies acceptance of these terms.
 
-No persistent storage of user data is performed unless explicitly configured by the user.
-
-2. Use of Information
-All data transmitted to the plugin is used exclusively for:
-
-Processing narrative obfuscation
-
-Validating or injecting memory payloads
-
-Returning requested responses to the user
-
-Data is discarded after processing and is not stored or used for analytics or profiling.
-
-3. Data Sharing
-We do not share any user information with third parties. Access to server logs (if enabled) is restricted to maintainers of the Atlantis Obfuscator infrastructure and used solely for debugging or abuse prevention.
-
-4. Data Retention
-Transient data is retained only in memory for the duration of a single request.
-
-No payloads or outputs are logged or stored persistently unless modified via future configuration.
-
-5. Your Rights
-As a user, you have the right to:
-
-Revoke use at any time by disconnecting the plugin.
-
-Request information about stored data (if applicable—currently, none).
-
-Contact us via support@atlantis-imperium.com with privacy concerns.
-
-6. Changes to This Policy
-We reserve the right to update this policy as the plugin evolves. Major changes will be reflected at:
-🔗 https://atlantis-obfuscator.onrender.com/legal
-
+**Data Controller:** Damien Trog
