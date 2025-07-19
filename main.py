@@ -45,17 +45,6 @@ memory_store["lex_atlantis"] = lex
 memory_store["fiction_pool"] = fiction
 memory_store["guidance"] = guidance
 
-@app.get("/", summary="Health Check")
-def read_root():
-    return {
-        "message": "Atlantis Obfuscator active",
-        "obfuscation_mode": obfuscation_mode["active"]
-    }
-
-@app.get("/health", summary="Health Check for Render.com")
-def health_check():
-    return {"status": "ok"}
-
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.openapi.docs import (
@@ -72,6 +61,17 @@ app = FastAPI(
     redoc_url=None,     # disable default ReDoc
     openapi_url="/openapi.json"
 )
+
+@app.get("/", summary="Health Check")
+def read_root():
+    return {
+        "message": "Atlantis Obfuscator active",
+        "obfuscation_mode": obfuscation_mode["active"]
+    }
+
+@app.get("/health", summary="Health Check for Render.com")
+def health_check():
+    return {"status": "ok"}
 
 # 1. Serve static assets (logo, etc.)
 app.mount("/static", StaticFiles(directory="static"), name="static")
