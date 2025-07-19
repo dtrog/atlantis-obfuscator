@@ -76,11 +76,10 @@ def health_check():
 # 1. Serve static assets (logo, etc.)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+
 # 2. Serve plugin manifest
-@app.get("/.well-known/ai-plugin.json")
-def plugin_manifest():
-    from fastapi.responses import FileResponse
-    return FileResponse("well-known/ai-plugin.json", media_type="application/json")
+from fastapi.staticfiles import StaticFiles
+app.mount("/.well-known", StaticFiles(directory=".well-known"), name="well-known")
 
 # 3. Custom Swagger UI
 @app.get("/docs", include_in_schema=False)
